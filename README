@@ -1,0 +1,45 @@
+Copyright Marcin Kliks marcin.kliks@gmail.com
+
+Python script for enabling brightness control for Samsung R519 laptop
+
+--------------
+INSTALATION
+-------------
+
+You need Python 2.3 for this script to work. 
+1. Just copy this file to /usr/local/bin/brightness and make it executable. 
+2. chmod a+x /usr/local/bin/brightness
+
+This script requires root access, so you should enable visudo to not asking you for password every time you execute this script. 
+To achieve this you should :
+
+1. Type: visudo
+2. Edit file so there's 2 lines like this.
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) NOPASSWD:ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) NOPASSWD:ALL
+
+3. Try to run from normal user account:
+
+> brightness up
+> brightness down
+
+
+. It should not ask you for password. The brightness should slightly change. Repeat command to change more. 
+
+That's it. You can now bind hardware keys for this script. In UNITY desktop GUI find System Settings -> Keyboard Shortcuts. Add 2 new entries:
+
+1> brightness_up
+pointing to /usr/local/bin/brightness up
+
+2> brightness_down
+pointing to /usr/local/bin/brightness down
+
+
+That's it. Type FN->Brightness up and down to see how it works.
+
+
+

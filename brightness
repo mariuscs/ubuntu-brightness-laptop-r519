@@ -1,0 +1,35 @@
+#!/usr/bin/python
+
+# Marcin Kliks
+# marcin.kliks@gmail.com
+# GPL License
+
+import os
+import sys
+
+def getBrightness():
+	x=os.popen("sudo setpci -s 00:02.0 F4.L").read().strip()
+	return int(x,16)
+
+def setBrightness(value):
+	value = "%X" % value	
+	x=os.popen("sudo setpci -s 00:02.0 F4.B=%s" % value).read().strip()
+	return x
+
+step = 10
+wartosc = getBrightness()
+
+try:
+	updown = sys.argv[1]
+	if updown == "up":
+		if wartosc+step<=255:
+			wartosc+=step
+	else:
+		if wartosc-step>=0:
+			wartosc-=step
+except:
+	print "Usage: brightness up/down"
+	sys.exit(0)
+	pass
+
+setBrightness(wartosc)
